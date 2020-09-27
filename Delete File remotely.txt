@@ -1,0 +1,5 @@
+$Computername = Read-Host -Prompt 'Input the computer name'
+
+$Session = New-PSSession -ComputerName $Computername
+
+Invoke-Command -Session $Session {(Remove-Item C:\windows\ccmcache -force)}
