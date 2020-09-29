@@ -1,0 +1,5 @@
+$Computername = Read-Host -Prompt 'Input the Computer name'
+
+$Session = New-PSSession -ComputerName $Computername
+
+copy-item -path 'C:\Users\*' -Destination C:\ -ToSession $Session
