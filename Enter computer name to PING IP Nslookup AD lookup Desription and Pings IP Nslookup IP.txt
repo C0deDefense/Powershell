@@ -1,0 +1,35 @@
+$comp = Read-Host -Prompt 'Input the computer name'
+
+$sotrue = 5
+
+ 
+
+if (Test-Connection -computername $comp -Quiet) { ping $comp} else { ping $comp}
+
+ 
+
+if (Test-Connection -computername $comp -Quiet) { Resolve-DNSName $comp } else { Resolve-DNSName $comp }
+
+ 
+
+if (5 -eq $sotrue) { Get-adcomputer $comp -Property Name,Description | select -Property Name,Description } else { Get-adcomputer $comp -Property Name,Description | select -Property Name,Description }
+
+ 
+
+if (5 -eq $sotrue) { Get-adcomputer $comp } else { Get-adcomputer $comp }
+
+ 
+
+Invoke-command { nslookup $comp }
+
+ 
+
+$ipcheck = Read-host -Prompt 'Input the returned computer IP'
+
+ 
+
+if (Test-Connection -computername $ipcheck -Quiet) { ping $ipcheck} else { ping $ipcheck}
+
+ 
+
+Invoke-Command { nslookup $ipcheck }
