@@ -33,3 +33,4 @@ if (Test-Connection -computername $ipcheck -Quiet) { ping $ipcheck} else { ping 
  
 
 Invoke-Command { nslookup $ipcheck }
+
