@@ -1,0 +1,5 @@
+$Computername = Read-host -prompt 'Input computer name'
+$session = New-pssession -computerName $computername
+Invoke-Command -Session $Session {(Remove-Item C:\windows\system32\grouppolicy\users\Registry.pol)}
+Invoke-Command -Session $Session {(Remove-Item C:\windows\system32\grouppolicy\computer\Registry.pol)}
+Invoke-Command -Session $Session {gpupdate /force}
