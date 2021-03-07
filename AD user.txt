@@ -8,11 +8,15 @@ param(
 
 )
 
-#Put simply a parameter aka param() allows you to declare a variable. Declare means to says this is my variable I am using x
+#Put simply a parameter aka param() allows you to declare a variable. Declare means to says this is my variable I am using $UserName
 
-#When prompt you are prompt to enter a value you assign that variable a value aka initializing the variable. Basically you say this is my variables value example x =5
+#When you are prompt to enter a value you assign that variable a value aka initializing the variable. Basically you say this is my string variables value example $UserName = david.goggins
 
-get-aduser $UserName
+ 
+
+#get-aduser $UserName
+
+Get-ADUser $UserName -properties scriptpath, homedrive, homedirectory
 
  
 
@@ -20,4 +24,6 @@ Get-ADPrincipalGroupMembership -identity $UserName | select-object -Property nam
 
 Get-ADUser $UserName | Select-Object -Property samaccountname,enabled
 
-Get-ADUser $UserName | Select-Object -Property Name,Description
+Get-ADUser $UserName -properties description | select Name, Description
+
+#Get-ADUser $UserName -properties scriptpath, homedrive, homedirectory
