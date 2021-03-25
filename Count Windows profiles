@@ -1,0 +1,13 @@
+$Computername = Read-Host -Prompt 'Input the computer name'
+$Session = New-PSSession -ComputerName $Computername
+$count = Invoke-Command -Session $Session { ((get-childitem c:\Users\ | Measure-Object).Count) }
+[int]$count
+[int]$profileLow = 10;
+try {
+
+ if ([int]$count -ge $profileLow) 
+ { Write-Host "Recommend a profile cleanup" } 
+ else 
+ { Write-Host "Cx doesn't have to many profiles" }
+} 
+catch { Write-Host "Error" }
