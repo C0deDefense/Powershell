@@ -1,0 +1,68 @@
+#New-Item C:\Users\danny\Desktop\test.csv -ItemType File //Firsst create the CSV
+#---------------------------------------------------------------------------------
+
+# Add-Content -Path C:\Users\danny\Desktop\test.csv -Value '"FirstName","LastName","UserName"' //Next add the headers
+#---------------------------------------------------------------------------------
+
+# Next add content to the Cx and separate by commas you must run this with admins
+
+# $test = @(
+
+# '"A","B","a"'#our arrray of strings
+#
+#  '"J","J","j"'
+#
+# '"M","B","m"'
+
+ # )
+ # For each value in test variable add to the path of the Csv
+ # $test | foreach { Add-Content -Path  C:\Users\danny\Desktop\test.csv -Value $_ }
+ #------------------------------------------------------------------------------------
+ #Show case your CSV
+ #Import-Csv C:\Users\danny\Desktop\test.csv | Format-Table
+
+
+
+
+ #-------------------------------------------------------------------------
+ #If you want to make an array of Objects instead of strings
+ $test = @(
+
+ # [pscustomobject]@{
+ #
+ # FirstName = 'A'
+ #
+ # LastName  = 'B'
+ #
+ # Username  = 'a'
+ #
+ # }
+
+ # [pscustomobject]@{
+
+ # FirstName = 'J'
+
+ # LastName  = 'J'
+
+ # Username  = 'j'
+
+ # }
+
+ # [pscustomobject]@{
+
+ # FirstName = 'M'
+
+ # LastName  = 'B'
+
+ # Username  = 'm'
+
+ # }
+
+ # )
+
+ # $test | Export-Csv -Path C:\test.csv
+
+  #---------------------
+  #If you don't want to overwrite the data but add use Append like so
+  #[pscustomobject]@{ FirstName =  'M'; LastName = 'B'; Username = 'm' } | Export-Csv -Path  C:\test.csv -Append -NoTypeInformation
+
