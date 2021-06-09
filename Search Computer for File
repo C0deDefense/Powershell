@@ -1,0 +1,2 @@
+#Start from c:
+Get-ChildItem -Recurse | Where-Object { $_.Name -match 'interesting-file.txt'}
