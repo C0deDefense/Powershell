@@ -1,0 +1,2 @@
+((get-command | Where-Object - Property CommandType -eq "Cmdlet").Count)
+
