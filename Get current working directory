@@ -1,0 +1,5 @@
+Get-Childitem -Directory
+or
+pwd
+or
+get-childitem -Directory
