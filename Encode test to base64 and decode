@@ -1,0 +1,9 @@
+Base64 is a group of similar binary-to-text encoding schemes that represent binary data in an ASCII
+
+$MYTEXT = 'This is my secret text'
+$ENCODED = [Convert]::ToBase64String([Text.Encoding]::Unicode.GetBytes($MYTEXT))
+Write-Output $ENCODED
+
+$MYTEXT = 'VABoAGkAcwAgAGkAcwAgAG0AeQAgAHMAZQBjAHIAZQB0ACAAdABlAHgAdAA='
+$DECODED = [System.Text.Encoding]::Unicode.GetString([System.Convert]::FromBase64String($MYTEXT))
+Write-Output $DECODED
