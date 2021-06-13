@@ -1,0 +1,3 @@
+
+$data = Get-Content (insertpathoffile)
+[System.Text.Encoding]::ASCII.GetString([System.Convert]::FromBase64String($data)) | Out-File -Encoding "ASCII" out.html
