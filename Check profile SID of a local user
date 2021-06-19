@@ -1,0 +1,2 @@
+$users = @('Administrator','DefaultAccount','duck','duck2','Guest')
+Get-localuser $users | select SID
