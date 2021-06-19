@@ -1,0 +1,5 @@
+get-localuser
+
+
+#here is to get the user profiles
+get-childitem C:\Users * -Force
