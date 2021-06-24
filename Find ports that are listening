@@ -1,0 +1,4 @@
+((Get-NetTCPConnection -State Listen).count)
+#Enumeration port status
+#note if you want to filter it down by the working use 
+((netstat -q | Select-String 'LISTENING').count)
