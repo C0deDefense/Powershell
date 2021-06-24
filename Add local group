@@ -1,0 +1,2 @@
+((Get-LocalGroup ).Count)
+#for users enumeration
