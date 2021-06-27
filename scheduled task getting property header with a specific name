@@ -1,0 +1,2 @@
+Get-scheduledtask | where-object -property Taskname -eq new-sched-task
+#taskname is the header
