@@ -1,0 +1,2 @@
+((wmic qfe).count)
+((Get-HotFix).count)
