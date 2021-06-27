@@ -1,0 +1,41 @@
+for($i=130; $i -le 140; $i++){
+    Test-NetConnection localhost -Port $i
+}
+
+
+
+#---------------------------------------------------------------------------
+for($i=130; $i -le 140; $i++){
+    Test-NetConnection localhost -Port $i
+}
+#-----------------------------------------------alt 2
+$port = @(130,131,132,134, 135,136,137,138,139,140)
+Test-NetConnection localhost -Port 130
+Test-NetConnection localhost -Port 131 
+Test-NetConnection localhost -Port 132
+Test-NetConnection localhost2 -Port 133
+Test-NetConnection localhost -Port 134
+Test-NetConnection localhost -Port 135
+Test-NetConnection localhost -Port 136
+Test-NetConnection localhost -Port 137
+Test-NetConnection localhost -Port 138
+Test-NetConnection localhost -Port 139
+Test-NetConnection localhost -Port 140
+
+#------------------------------------------------------alt 3
+new-object System.Net.Sockets.TcpClient(10.10.55.76, 130)
+new-object System.Net.Sockets.TcpClient(10.10.55.76, 131)
+new-object System.Net.Sockets.TcpClient(10.10.55.76, 132)
+new-object System.Net.Sockets.TcpClient(10.10.55.76, 133)
+new-object System.Net.Sockets.TcpClient(10.10.55.76, 134)
+new-object System.Net.Sockets.TcpClient(10.10.55.76, 135)
+new-object System.Net.Sockets.TcpClient(10.10.55.76, 136)
+new-object System.Net.Sockets.TcpClient(10.10.55.76, 137)
+new-object System.Net.Sockets.TcpClient(10.10.55.76, 138)
+new-object System.Net.Sockets.TcpClient(10.10.55.76, 139)
+new-object System.Net.Sockets.TcpClient(10.10.55.76, 140)
+port-scan-udp 10.10.55.76 130
+Get-NetUDPEndpoint -Localport 138
+new-object System.Net.Sockets.udpClient(10.10.55.76, 140)
+
+
