@@ -1,0 +1,20 @@
+$system_ports = Get-NetTCPConnection -State Listen # gets the listening port
+$text_port = Get-Content -Path C:\Users\Administrator\Desktop\ports.txt #list of ports
+foreach($port in $text_port) #all the ports inside the file are assigned to $port
+#for each $port number in the text port
+{
+#if the $port number is included in the get command we ran header named LocalPort echo the port
+if($port -in $system_ports.LocalPort) {
+echo $port
+}
+}
+
+#text port.txt content
+#135
+#49655
+#49666
+#3389
+#1111
+#49671
+#3389
+#2234
