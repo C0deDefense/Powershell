@@ -1,0 +1,4 @@
+((wmic qfe).count)
+((Get-HotFix).count)
+
+Get-HotFix | where-object -Property HotFixID -eq KB4023834 | Select-Object HotFixID, InstalledOn |Format-Table
