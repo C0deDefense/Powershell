@@ -1,0 +1,55 @@
+Teams fix
+
+$Computername = Read-Host -Prompt 'Input the computer name'
+
+$Session = Enter-PSSession -ComputerName $Computername
+
+ 
+
+#-------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+$Firstname = Read-Host -Prompt 'input profile currnet name'
+
+ 
+
+$Endofpath = "\AppData\Roaming\Microsoft\Teams"
+
+ 
+
+$wholepath = "c:\users\" + $Firstname + $Endofpath
+
+ 
+
+Invoke-Command {(remove-item $wholepath -force)}
+
+ 
+
+Invoke-Command {(Exit-PSSession)}
+
+ 
+
+#------------------------------------------------------------------------------------------------------------------------------------------------
+
+ 
+
+$name = Read-Host -Prompt 'input profile currnet name'
+
+ 
+
+copy-item -path \\computername\C$\Users\danny.a.lopez1\AppData\Roaming\Microsoft\Teams -Destination \\computername\c$\users\$name\AppData\Roaming\Microsoft\Teams -Recurse
+
+ 
+
+$wholepath
+
+ 
+
+                                                                          #concatenate c:\users\ with the username and concatenates .old and stores in the $new name variable
+
+ 
+
+#rename-item -path $Path $new #renames the folder
+
+ 
