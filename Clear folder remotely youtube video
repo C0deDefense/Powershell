@@ -1,48 +1,63 @@
 try  { import-module ActiveDirectory
+
+#region whole script
+#Danny's Clear folder script 
 [reflection.assembly]::loadwithpartialname("System.Windows.Forms") | Out-Null
 $CSForm = New-Object System.Windows.Forms.Form
 $CSForm.Size = '300, 200'
 $CSForm.Text = 'Clear Folder'
+#$CSForm.ShowDialog()
+
+
+$computerTextBox = New-Object System.Windows.Forms.TextBox
+$computerTextBox.Location = '80,23'#'Position from left app side, Position from top of app bar'
+$computerTextBox.Size = '150,23'
+$computerTextBox.ReadOnly = $false
+$CSForm.Controls.Add($computerTextBox)
+#$CSForm.ShowDialog()
 
 $computerLabelBox = New-Object System.Windows.Forms.Label
 $computerLabelBox.Location = '10,23'
 $computerLabelBox.Size = '70,70'
 $computerLabelBox.Text = '  Computer:'
 $CSForm.Controls.Add($computerLabelBox)
+#$CSForm.ShowDialog()
 
-$computerTextBox = New-Object System.Windows.Forms.TextBox
-$computerTextBox.Location = '80,23'
-$computerTextBox.Size = '150,23'
-$computerTextBox.ReadOnly = $false
-$CSForm.Controls.Add($computerTextBox)
+$returnStatus = New-Object System.Windows.Forms.StatusBar
+$returnStatus.Name = "StatusBar"
+$returnStatus.Text = "Ready"
+$CSForm.Controls.Add($returnStatus)
+#$CSForm.ShowDialog()
 
-$okButton = New-Object System.Windows.Forms.Button
+$okButton = New-Object System.Windows.Forms.Button                                                     
 $okButton.Text = 'Ok'
 $okButton.Location = "23,100"
 $okButton.Add_Click({
 
-# Leave this line commented out To run in Virtual Lab/Enterprise environment 
-
+##----------------------To run in Virtual Lab/Enterprise environment 
 if (Test-Connection $computerTextBox.Text -Quiet) {
 $returnStatus.Text = "Ping Successful"
 $returnStatus.Text = "Processing"
 $Session = New-PSSession -ComputerName $computerTextBox.Text
-Invoke-Command -Session $Session {(Remove-Item C:\Test.txt -Recurse -force -Confirm:$false)}
+Invoke-Command -Session $Session {(Remove-Item C:\Test\* -Recurse -force -Confirm:$false)}
 $returnStatus.Text = "Complete"
 } else {  $returnStatus.Text = "Computer Offline" }
 
 
-#To test code on your computer/Non-enterprise environment
+
+##----------------------To test code on your computer/Non-enterprise environment
 #if (Test-Connection $computerTextBox.Text -Quiet) {
 #$returnStatus.Text = "Ping Successful"
 #$returnStatus.Text = "Processing"
-#Invoke-Command {(Remove-Item C:\Test -Recurse -force -Confirm:$false)}
+#Invoke-Command {(Remove-Item C:\Test\* -Recurse -force -Confirm:$false)}
 #$returnStatus.Text = "Complete"
 #} else {  $returnStatus.Text = "Computer Offline" }
 
 })
-$CSForm.AcceptButton = $okButton
 $CSForm.Controls.Add($okButton)
+$CSForm.AcceptButton = $okButton
+#$CSForm.ShowDialog()
+
 
 $contentcButton = New-Object System.Windows.Forms.Button
 $contentcButton.Text = 'Clear'
@@ -53,6 +68,8 @@ $returnStatus.Text = "Ready"
 
 })
 $CSForm.Controls.Add($contentcButton)
+#$CSForm.ContentcButton = $contentcButton
+#$CSForm.ShowDialog()
 
 $cancelButton = New-Object System.Windows.Forms.Button
 $cancelButton.Text = 'Close'
@@ -61,16 +78,13 @@ $cancelButton.Add_Click({
 $CSForm.Close()
 })
 $CSForm.Controls.Add($cancelButton)
-
-$returnStatus = New-Object System.Windows.Forms.StatusBar
-$returnStatus.Name = "StatusBar"
-$returnStatus.Text = "Ready"
-$CSForm.Controls.Add($returnStatus)
-
+$CSForm.CancelButton = $cancelButton
+#$CSForm.ShowDialog()
 
 $CSForm.ShowDialog()
-}
+#endregion
 
+}
 
 Catch
 {
